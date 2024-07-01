@@ -17,14 +17,13 @@ fn main() {
 }
 
 //Add approprieate parameters, return values, and implementation to this function
-fn pluralize(s: &String) ->String
-{
+fn pluralize(s: &String) -> String {
     let mut ss = String::from(s);
     ss.push_str("s");
     ss
 }
 
-fn pluralize_idiomatic_plus(s: &str) ->String
-{
+fn pluralize_idiomatic_plus(s: &str) -> String {
+    // create owned data from borrowed (usually implements a clone)
     s.to_owned() + "s"
 }
