@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
@@ -13,6 +15,24 @@ pub fn pluralize_idiomatic_plus(s: &str) -> String {
     // create owned data from borrowed (usually implements a clone)
     s.to_owned() + "s"
 }
+
+
+pub fn count_words(text: &String) -> HashMap<&'static str,u8> {
+    let mut frequencies = HashMap::new();
+    let phrase = text.split_whitespace();
+    phrase.into_iter().for_each(|word| {
+        match frequencies.get_mut(&word) {
+            Some(value) => {
+                *value += 1;
+            },
+            None => {
+                frequencies.insert(word, 1);
+            },
+        }
+    });
+    frequencies
+}
+
 
 
 
@@ -40,4 +60,10 @@ mod tests {
         assert_eq!(result, String::from("books"));
     }
 
+    #[test]
+    fn count_words_all_accounted() {
+        let t = String::from("It was the best of times, it was the worst of times,");
+        let result :HashMap<&str,u8> = count_words(t);
+        assert_eq!(result.get("times"), 2); 
+    }
 }
