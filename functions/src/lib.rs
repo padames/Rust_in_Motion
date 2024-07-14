@@ -63,7 +63,7 @@ mod tests {
     #[test]
     fn count_words_all_accounted() {
         let t = String::from("It was the best of times, it was the worst of times,");
-        let result :HashMap<&str,u8> = count_words(t);
+        let result :HashMap<&str,u8> = count_words(&t);
         assert_eq!(result.get("times"), 2); 
     }
 }
